@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Catering</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Sign-In API -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    :root {
+      --primary-color: #1abc9c;
+      --primary-hover: #16a085;
+      --secondary-color: #2c3e50;
+      --text-color: #2c3e50;
+      --bg-color: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      --card-bg: white;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --footer-bg: #2c3e50;
+      --input-border: #e0e0e0;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --nav-text-color: #2c3e50;
+    }
+
+    .dark-mode {
+      --primary-color: #1abc9c;
+      --primary-hover: #16a085;
+      --secondary-color: #ecf0f1;
+      --text-color: #ecf0f1;
+      --bg-color: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      --card-bg: #2c3e50;
+      --nav-bg: rgba(44, 62, 80, 0.95);
+      --footer-bg: #1a252f;
+      --input-border: #4b6584;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+      --nav-text-color: #ecf0f1;
+    }
+
+    body {
+      background: var(--bg-color);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background: var(--nav-bg);
+      box-shadow: 0 2px 15px var(--shadow-color);
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--nav-text-color);
+      font-size: 1.8rem;
+    }
+
+    .navbar-brand span {
+      color: var(--primary-color);
+    }
+
+    .nav-link {
+      color: var(--nav-text-color);
+      font-weight: 600;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .btn-custom {
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-custom:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+    }
+    
+    .btn-logout {
+      background: #e74c3c;
+      color: white;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+    }
+    
+    .btn-logout:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+    }
+
+    .btn-dark-mode {
+      background: var(--secondary-color);
+      color: white;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      margin-left: 10px;
+    }
+
+    .btn-dark-mode:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      color: var(--text-color);
+      font-weight: 800;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px var(--shadow-color);
+    }
+
+    .hero p {
+      color: #7f8c8d;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    /* Carousel Container */
+    #carouselExampleControls {
+      max-width: 900px;
+      margin: 40px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px var(--shadow-color);
+      transition: transform 0.3s ease;
+    }
+
+    #carouselExampleControls:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Images */
+    .carousel-inner img {
+      height: 500px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    /* Image Overlay */
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      padding: 15px 20px;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      backdrop-filter: blur(5px);
+    }
+
+    .carousel-caption h5 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .carousel-caption p {
+      font-size: 1rem;
+      color: #e0e0e0;
+    }
+
+    /* Prev/Next Buttons */
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0 20px;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-control-prev {
+      left: 10px;
+    }
+
+    .carousel-control-next {
+      right: 10px;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+      background: rgba(26, 188, 156, 0.9);
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-size: 30px 30px;
+      filter: invert(1);
+    }
+
+    /* Indicators */
+    .carousel-indicators button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin: 0 5px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-indicators button.active {
+      background-color: var(--primary-color);
+      transform: scale(1.3);
+      border-color: white;
+    }
+
+    /* Optional: Fade effect */
+    .carousel-item {
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    /* Services Section */
+    .services {
+      padding: 80px 0;
+      background: var(--card-bg);
+      border-radius: 20px;
+      margin: 40px 0;
+      box-shadow: 0 10px 30px var(--shadow-color);
+    }
+
+    .service-card {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 15px;
+      transition: transform 0.3s;
+      margin-bottom: 20px;
+      background: var(--card-bg);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px var(--shadow-color);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      margin: 20px;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--footer-bg);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    /* Login Modal */
+    .modal-content {
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 5px 25px var(--shadow-color);
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+    
+    .modal-header {
+      background: var(--primary-color);
+      color: white;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      border-bottom: none;
+    }
+    
+    .modal-body {
+      padding: 30px;
+    }
+    
+    .form-control {
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 2px solid var(--input-border);
+      transition: all 0.3s;
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(26, 188, 156, 0.25);
+    }
+    
+    .login-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 30px;
+      font-weight: 600;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    
+    .login-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+    
+    .login-links {
+      text-align: center;
+      margin-top: 15px;
+    }
+    
+    .login-links a {
+      color: var(--primary-color);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .invalid-feedback {
+      display: none;
+      color: #e74c3c;
+      margin-top: -15px;
+      margin-bottom: 15px;
+    }
+
+    .is-invalid {
+      border-color: #e74c3c !important;
+    }
+
+    .is-invalid:focus {
+      box-shadow: 0 0 0 0.25rem rgba(231, 76, 60, 0.25) !important;
+    }
+
+    .success-message {
+      color: #2ecc71;
+      text-align: center;
+      margin-top: 15px;
+      display: none;
+    }
+
+    /* Google Sign-In Button Styles */
+    .google-signin-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    .g_id_signin {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+      color: #767676;
+      font-weight: 600;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .divider::before {
+      margin-right: 10px;
+    }
+    
+    .divider::after {
+      margin-left: 10px;
+    }
+
+    /* Demo Google Button Styles */
+    .demo-google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-weight: 600;
+      width: 100%;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .demo-google-btn:hover {
+      background: #357ae8;
+      transform: translateY(-2px);
+    }
+    
+    .demo-google-btn i {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      #carouselExampleControls {
+        max-width: 700px;
+      }
+      
+      .carousel-inner img {
+        height: 400px;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #carouselExampleControls {
+        max-width: 500px;
+      }
+      
+      .carousel-inner img {
+        height: 300px;
+      }
+      
+      .carousel-caption {
+        padding: 10px;
+        bottom: 15px;
+      }
+      
+      .carousel-caption h5 {
+        font-size: 1.2rem;
+      }
+      
+      .carousel-caption p {
+        font-size: 0.9rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      #carouselExampleControls {
+        max-width: 350px;
+      }
+      
+      .carousel-inner img {
+        height: 250px;
+      }
+      
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#"><span>Food</span> Catering</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contact.html">Contact us</a>
+          </li>
+          <li class="nav-item ms-2">
+            <button class="btn btn-dark-mode" id="darkModeToggle">
+              <i class="fas fa-moon"></i> Dark Mode
+            </button>
+          </li>
+          <li class="nav-item ms-2" id="loginButtonContainer">
+            <!-- Login button will be shown by default -->
+            <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+          </li>
+          <li class="nav-item ms-2 d-none" id="logoutButtonContainer">
+            <!-- Logout button will be shown after login -->
+            <button class="btn btn-logout" id="logoutButton">Logout</button>
+          </li>
+          <li class="nav-item ms-2 d-none" id="userWelcomeContainer">
+            <!-- Welcome message after login -->
+            <span class="nav-link text-success fw-bold" id="userWelcome"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Exquisite Catering for Every Occasion</h1>
+      <p>From intimate gatherings to grand celebrations, we create memorable experiences through exceptional food and impeccable service.</p>
+      <a href="./Gallery.html" class="btn btn-custom">Welcome to My food catering Gallery</a>
+    </div>
+  </section>
+
+  <!-- Carousel Section -->
+  <div class="container">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="Wedding Catering">
+          
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" class="d-block w-100" alt="Corporate Events">
+          
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" class="d-block w-100" alt="Gourmet Dishes">
+          
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1081&q=80" class="d-block w-100" alt="Private Parties">
+         
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <section class="services">
+    <div class="container">
+      <h2 class="text-center mb-5">Our Catering Services</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-glass-cheers"></i>
+            </div>
+            <h3>Wedding Catering</h3>
+            <p>Elegant and customizable menus for your special day, with professional service and presentation.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3>Corporate Events</h3>
+            <p>Impress clients and employees with our professional catering for meetings and corporate functions.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-birthday-cake"></i>
+            </div>
+            <h3>Private Parties</h3>
+            <p>From intimate dinners to large celebrations, we create memorable dining experiences.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="text-center mb-5">What Our Clients Say</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"The food was absolutely exquisite! Our wedding guests are still talking about the delicious menu months later."</p>
+            <p class="testimonial-author">- Sarah & Michael</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Pure Catering exceeded all expectations for our corporate event. Professional service and incredible food!"</p>
+            <p class="testimonial-author">- Jennifer Thompson, CEO</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"We've used Pure Catering for three events now, and they consistently deliver exceptional quality and service."</p>
+            <p class="testimonial-author">- Robert Johnson</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Pure Catering</h5>
+          <p>Exquisite food and impeccable service for all your special occasions.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+          <p><i class="fas fa-envelope"></i> info@purecatering.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Avenue, Foodville</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Follow Us</h5>
+          <div class="social-icons">
+             <a href="https://web.facebook.com/"><i class="fab fa-facebook-f me-3"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram me-3"></i></a>
+            <a href="https://www.tiktok.com/"><i class="fab fa-tiktok me-3"></i></a>
+            <a href="https://www.pinterest.com/"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <p class="text-center">&copy; 2023 Pure Catering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login to Your Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+              <div class="invalid-feedback" id="emailError">Please enter a valid email address</div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+              <div class="invalid-feedback" id="passwordError">Password must be at least 6 characters long</div>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="rememberMe">
+              <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+            <div class="success-message" id="loginSuccess">Login successful! Redirecting...</div>
+            
+            <div class="divider">OR</div>
+            
+            <!-- Google Sign-In Button -->
+            <div class="google-signin-container">
+              <!-- Demo Google Button (shown by default) -->
+              <button class="demo-google-btn" id="demoGoogleBtn">
+                <i class="fab fa-google"></i> Continue with Google
+              </button>
+              
+              <!-- Actual Google Sign-In (hidden until client ID is configured) -->
+              <div id="g_id_onload"
+                data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleGoogleSignIn"
+                data-auto_prompt="false"
+                style="display: none;">
+              </div>
+              <div class="g_id_signin"
+                data-type="standard"
+                data-shape="pill"
+                data-theme="filled_blue"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left"
+                data-width="300"
+                style="display: none;">
+              </div>
+            </div>
+            
+            <div class="login-links">
+              <a id="forgotPasswordLink">Forgot Password?</a> | <a id="createAccountLink">Create Account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Your Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="forgotPasswordForm">
+            <div class="mb-3">
+              <label for="resetEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="resetEmail" placeholder="name@example.com" required>
+              <div class="invalid-feedback" id="resetEmailError">Please enter a valid email address</div>
+            </div>
+            <button type="submit" class="login-btn">Send Reset Link</button>
+            <div class="success-message" id="resetSuccess">Password reset link has been sent to your email!</div>
+            <div class="login-links">
+              <a id="backToLogin">Back to Login</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Account Modal -->
+  <div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createAccountModalLabel">Create New Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="createAccountForm">
+            <div class="mb-3">
+              <label for="newName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="newName" placeholder="Enter your full name" required>
+              <div class="invalid-feedback" id="nameError">Please enter your name</div>
+            </div>
+            <div class="mb-3">
+              <label for="newEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="newEmail" placeholder="name@example.com" required>
+              <div class="invalid-feedback" id="newEmailError">Please enter a valid email address</div>
+            </div>
+            <div class="mb-3">
+              <label for="newPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="newPassword" placeholder="Create a password" required>
+              <div class="invalid-feedback" id="newPasswordError">Password must be at least 6 characters long</div>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+              <div class="invalid-feedback" id="confirmPasswordError">Passwords do not match</div>
+            </div>
+            <button type="submit" class="login-btn">Create Account</button>
+            <div class="success-message" id="createAccountSuccess">Account created successfully! You can now login.</div>
+            <div class="login-links">
+              <a id="backToLoginFromCreate">Back to Login</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if user is already logged in
+  checkLoginStatus();
+  
+  // Initialize modals
+  const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+  const forgotPasswordModal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
+  const createAccountModal = new bootstrap.Modal(document.getElementById('createAccountModal'));
+  
+  // Dark mode toggle functionality
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const darkModeIcon = darkModeToggle.querySelector('i');
+  
+  // Check for saved dark mode preference
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+    darkModeIcon.classList.remove('fa-moon');
+    darkModeIcon.classList.add('fa-sun');
+    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+  }
+  
+  darkModeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'enabled');
+      darkModeIcon.classList.remove('fa-moon');
+      darkModeIcon.classList.add('fa-sun');
+      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+    } else {
+      localStorage.setItem('darkMode', null);
+      darkModeIcon.classList.remove('fa-sun');
+      darkModeIcon.classList.add('fa-moon');
+      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+    }
+  });
+  
+  // Modal navigation
+  document.getElementById('forgotPasswordLink').addEventListener('click', function() {
+    loginModal.hide();
+    setTimeout(() => {
+      forgotPasswordModal.show();
+    }, 500);
+  });
+  
+  document.getElementById('createAccountLink').addEventListener('click', function() {
+    loginModal.hide();
+    setTimeout(() => {
+      createAccountModal.show();
+    }, 500);
+  });
+  
+  document.getElementById('backToLogin').addEventListener('click', function() {
+    forgotPasswordModal.hide();
+    setTimeout(() => {
+      loginModal.show();
+    }, 500);
+  });
+  
+  document.getElementById('backToLoginFromCreate').addEventListener('click', function() {
+    createAccountModal.hide();
+    setTimeout(() => {
+      loginModal.show();
+    }, 500);
+  });
+  
+  // Demo Google Sign-In button functionality
+  document.getElementById('demoGoogleBtn').addEventListener('click', function() {
+    // Show a message about setting up Google OAuth
+    alert("To enable real Google Sign-In:\n\n1. Go to Google Cloud Console\n2. Create a project and enable Google Identity Services API\n3. Configure OAuth consent screen\n4. Create credentials (OAuth client ID)\n5. Replace 'YOUR_GOOGLE_CLIENT_ID' with your actual client ID\n\nFor now, this is a demo button that simulates a successful login.");
+    
+    // Simulate Google login for demo purposes
+    const demoUserData = {
+      name: "Google User",
+      email: "demo.user@gmail.com",
+      picture: "https://via.placeholder.com/150",
+      sub: "demo-google-id"
+    };
+    
+    // Store demo user data in localStorage
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('googleUser', JSON.stringify(demoUserData));
+    
+    // Update UI
+    updateLoginUI(true, demoUserData.email, true);
+    
+    // Close the login modal
+    loginModal.hide();
+    
+    // Show success message
+    alert(`Welcome ${demoUserData.name}! This is a demo of Google Sign-In functionality.`);
+  });
+  
+  // Login form validation and submission
+  const loginForm = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+  const loginSuccess = document.getElementById('loginSuccess');
+  
+  // Validate email format
+  function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+  
+  // Validate password (at least 6 characters)
+  function isValidPassword(password) {
+    return password.length >= 6;
+  }
+  
+  // Validate individual fields
+  emailInput.addEventListener('blur', function() {
+    if (!isValidEmail(emailInput.value)) {
+      emailInput.classList.add('is-invalid');
+      emailError.style.display = 'block';
+    } else {
+      emailInput.classList.remove('is-invalid');
+      emailError.style.display = 'none';
+    }
+  });
+  
+  passwordInput.addEventListener('blur', function() {
+    if (!isValidPassword(passwordInput.value)) {
+      passwordInput.classList.add('is-invalid');
+      passwordError.style.display = 'block';
+    } else {
+      passwordInput.classList.remove('is-invalid');
+      passwordError.style.display = 'none';
+    }
+  });
+  
+  // Form submission
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let isValid = true;
+    
+    // Validate email
+    if (!isValidEmail(emailInput.value)) {
+      emailInput.classList.add('is-invalid');
+      emailError.style.display = 'block';
+      isValid = false;
+    } else {
+      emailInput.classList.remove('is-invalid');
+      emailError.style.display = 'none';
+    }
+    
+    // Validate password
+    if (!isValidPassword(passwordInput.value)) {
+      passwordInput.classList.add('is-invalid');
+      passwordError.style.display = 'block';
+      isValid = false;
+    } else {
+      passwordInput.classList.remove('is-invalid');
+      passwordError.style.display = 'none';
+    }
+    
+    if (isValid) {
+      // Show success message
+      loginSuccess.style.display = 'block';
+      
+      // Store login status in localStorage
+      setTimeout(() => {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', emailInput.value);
+        
+        // Close the modal
+        loginModal.hide();
+        
+        // Update UI to show logged in state
+        updateLoginUI(true, emailInput.value);
+        
+        // Reset form
+        loginForm.reset();
+        loginSuccess.style.display = 'none';
+      }, 1500);
+    }
+  });
+  
+  // Forgot Password form
+  const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+  const resetEmailInput = document.getElementById('resetEmail');
+  const resetEmailError = document.getElementById('resetEmailError');
+  const resetSuccess = document.getElementById('resetSuccess');
+  
+  forgotPasswordForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!isValidEmail(resetEmailInput.value)) {
+      resetEmailInput.classList.add('is-invalid');
+      resetEmailError.style.display = 'block';
+    } else {
+      resetEmailInput.classList.remove('is-invalid');
+      resetEmailError.style.display = 'none';
+      
+      // Show success message
+      resetSuccess.style.display = 'block';
+      
+      // Reset form after delay
+      setTimeout(() => {
+        resetSuccess.style.display = 'none';
+        forgotPasswordModal.hide();
+        loginModal.show();
+        forgotPasswordForm.reset();
+      }, 2000);
+    }
+  });
+  
+  // Create Account form
+  const createAccountForm = document.getElementById('createAccountForm');
+  const newNameInput = document.getElementById('newName');
+  const newEmailInput = document.getElementById('newEmail');
+  const newPasswordInput = document.getElementById('newPassword');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const nameError = document.getElementById('nameError');
+  const newEmailError = document.getElementById('newEmailError');
+  const newPasswordError = document.getElementById('newPasswordError');
+  const confirmPasswordError = document.getElementById('confirmPasswordError');
+  const createAccountSuccess = document.getElementById('createAccountSuccess');
+  
+  // Validate name field
+  newNameInput.addEventListener('blur', function() {
+    if (!newNameInput.value.trim()) {
+      newNameInput.classList.add('is-invalid');
+      nameError.style.display = 'block';
+    } else {
+      newNameInput.classList.remove('is-invalid');
+      nameError.style.display = 'none';
+    }
+  });
+  
+  // Validate email field
+  newEmailInput.addEventListener('blur', function() {
+    if (!isValidEmail(newEmailInput.value)) {
+      newEmailInput.classList.add('is-invalid');
+      newEmailError.style.display = 'block';
+    } else {
+      newEmailInput.classList.remove('is-invalid');
+      newEmailError.style.display = 'none';
+    }
+  });
+  
+  // Validate password field
+  newPasswordInput.addEventListener('blur', function() {
+    if (!isValidPassword(newPasswordInput.value)) {
+      newPasswordInput.classList.add('is-invalid');
+      newPasswordError.style.display = 'block';
+    } else {
+      newPasswordInput.classList.remove('is-invalid');
+      newPasswordError.style.display = 'none';
+    }
+  });
+  
+  // Validate confirm password field
+  confirmPasswordInput.addEventListener('blur', function() {
+    if (confirmPasswordInput.value !== newPasswordInput.value) {
+      confirmPasswordInput.classList.add('is-invalid');
+      confirmPasswordError.style.display = 'block';
+    } else {
+      confirmPasswordInput.classList.remove('is-invalid');
+      confirmPasswordError.style.display = 'none';
+    }
+  });
+  
+  // Create account form submission
+  createAccountForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let isValid = true;
+    
+    // Validate name
+    if (!newNameInput.value.trim()) {
+      newNameInput.classList.add('is-invalid');
+      nameError.style.display = 'block';
+      isValid = false;
+    } else {
+      newNameInput.classList.remove('is-invalid');
+      nameError.style.display = 'none';
+    }
+    
+    // Validate email
+    if (!isValidEmail(newEmailInput.value)) {
+      newEmailInput.classList.add('is-invalid');
+      newEmailError.style.display = 'block';
+      isValid = false;
+    } else {
+      newEmailInput.classList.remove('is-invalid');
+      newEmailError.style.display = 'none';
+    }
+    
+    // Validate password
+    if (!isValidPassword(newPasswordInput.value)) {
+      newPasswordInput.classList.add('is-invalid');
+      newPasswordError.style.display = 'block';
+      isValid = false;
+    } else {
+      newPasswordInput.classList.remove('is-invalid');
+      newPasswordError.style.display = 'none';
+    }
+    
+    // Validate confirm password
+    if (confirmPasswordInput.value !== newPasswordInput.value) {
+      confirmPasswordInput.classList.add('is-invalid');
+      confirmPasswordError.style.display = 'block';
+      isValid = false;
+    } else {
+      confirmPasswordInput.classList.remove('is-invalid');
+      confirmPasswordError.style.display = 'none';
+    }
+    
+    if (isValid) {
+      // Show success message
+      createAccountSuccess.style.display = 'block';
+      
+      // Store account info (in a real app, this would be sent to a server)
+      localStorage.setItem('userEmail', newEmailInput.value);
+      localStorage.setItem('userName', newNameInput.value);
+      
+      // Reset form and close modal after delay
+      setTimeout(() => {
+        createAccountSuccess.style.display = 'none';
+        createAccountModal.hide();
+        loginModal.show();
+        createAccountForm.reset();
+      }, 2000);
+    }
+  });
+  
+  // Logout functionality
+  document.getElementById('logoutButton').addEventListener('click', function() {
+    // Remove login status from localStorage
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('googleUser');
+    
+    // Update UI to show logged out state
+    updateLoginUI(false);
+  });
+  
+  function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const userEmail = localStorage.getItem('userEmail');
+    const googleUser = localStorage.getItem('googleUser');
+    
+    if (isLoggedIn && userEmail) {
+      updateLoginUI(true, userEmail);
+    } else if (googleUser) {
+      const userData = JSON.parse(googleUser);
+      updateLoginUI(true, userData.email, true);
+    }
+  }
+  
+  function updateLoginUI(isLoggedIn, email = '', isGoogleUser = false) {
+    const loginButtonContainer = document.getElementById('loginButtonContainer');
+    const logoutButtonContainer = document.getElementById('logoutButtonContainer');
+    const userWelcomeContainer = document.getElementById('userWelcomeContainer');
+    const userWelcome = document.getElementById('userWelcome');
+    
+    if (isLoggedIn) {
+      // User is logged in
+      loginButtonContainer.classList.add('d-none');
+      logoutButtonContainer.classList.remove('d-none');
+      userWelcomeContainer.classList.remove('d-none');
+      
+      if (isGoogleUser) {
+        userWelcome.textContent = `Welcome, Google User!`;
+      } else {
+        userWelcome.textContent = `Welcome, ${email.split('@')[0]}`;
+      }
+    } else {
+      // User is logged out
+      loginButtonContainer.classList.remove('d-none');
+      logoutButtonContainer.classList.add('d-none');
+      userWelcomeContainer.classList.add('d-none');
+      userWelcome.textContent = '';
+    }
+  }
+  
+  // Google Sign-In handler
+  function handleGoogleSignIn(response) {
+    // This is the response from Google with the user's credentials
+    console.log("Google Sign-In successful!", response);
+    
+    // Extract user information
+    const userData = {
+      name: response.credential.name,
+      email: response.credential.email,
+      picture: response.credential.picture,
+      sub: response.credential.sub
+    };
+    
+    // Store user data in localStorage
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('googleUser', JSON.stringify(userData));
+    
+    // Update UI
+    updateLoginUI(true, userData.email, true);
+    
+    // Close the login modal
+    const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+    loginModal.hide();
+    
+    // Show success message
+    alert(`Welcome ${userData.name}! You have successfully signed in with Google.`);
+  }
+});
+
+// Fallback Google Sign-In function for the global scope
+window.handleGoogleSignIn = function(response) {
+  document.dispatchEvent(new CustomEvent('googleSignIn', { detail: response }));
+};
+</script>
+</body>
+</html>

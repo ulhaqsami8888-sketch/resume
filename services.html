@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Catering</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+
+    .navbar-brand span {
+      color: #1abc9c;
+    }
+
+    .nav-link {
+      color: #2c3e50;
+      font-weight: 600;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #1abc9c;
+    }
+
+    .btn-custom {
+      background: #1abc9c;
+      color: white;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-custom:hover {
+      background: #16a085;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 100px 0 60px;
+      text-align: center;
+      background: white;
+      margin-bottom: 40px;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-header h1 {
+      color: #2c3e50;
+      font-weight: 800;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .page-header p {
+      color: #7f8c8d;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    /* Services Section */
+    .services-section {
+      padding: 60px 0;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+      height: 100%;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-img {
+      height: 220px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .service-content {
+      padding: 25px;
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: #1abc9c;
+      margin-bottom: 15px;
+    }
+
+    .service-title {
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .service-description {
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 25px;
+    }
+
+    .service-features li {
+      padding: 5px 0;
+      color: #5a6a7a;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .service-features li:before {
+      content: "✓";
+      color: #1abc9c;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* Process Section */
+    .process-section {
+      padding: 80px 0;
+      background: white;
+      border-radius: 20px;
+      margin: 40px 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .process-number {
+      width: 60px;
+      height: 60px;
+      background: #1abc9c;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 20px;
+    }
+
+    .process-title {
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+      padding: 80px 0;
+      border-radius: 20px;
+      margin: 60px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .cta-section p {
+      margin-bottom: 30px;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .btn-light-custom {
+      background: white;
+      color: #16a085;
+      border-radius: 50px;
+      padding: 12px 30px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-light-custom:hover {
+      background: #f8f9fa;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Footer */
+    .footer {
+      background: #2c3e50;
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #1abc9c;
+      text-decoration: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .page-header p {
+        font-size: 1rem;
+      }
+      
+      .service-img {
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .service-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="./index.html"><span>Food</span> Catering</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="./services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contact.html">Contact us</a>
+          </li>
+          <li class="nav-item ms-2">
+            <a class="btn btn-custom" href="https://web.whatsapp.com/">Book Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Our Catering Services</h1>
+      <p>Discover our comprehensive range of catering services designed to make your events unforgettable. From intimate gatherings to grand celebrations, we provide exceptional culinary experiences.</p>
+      <a href="#contact" class="btn btn-custom">Get a Quote</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="container">
+      <div class="row">
+        <!-- Wedding Catering -->
+        <div class="col-lg-6">
+          <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="service-img" alt="Wedding Catering">
+            <div class="service-content">
+              <div class="service-icon">
+                <i class="fas fa-glass-cheers"></i>
+              </div>
+              <h3 class="service-title">Wedding Catering</h3>
+              <p class="service-description">Make your special day truly unforgettable with our exquisite wedding catering services. We create personalized menus that reflect your style and preferences.</p>
+              <ul class="service-features">
+                <li>Custom menu planning</li>
+                <li>Elegant presentation</li>
+                <li>Professional serving staff</li>
+                <li>Complimentary tasting session</li>
+                <li>Special dietary accommodations</li>
+              </ul>
+              <a href="#" class="btn btn-custom">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corporate Events -->
+        <div class="col-lg-6">
+          <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" class="service-img" alt="Corporate Events">
+            <div class="service-content">
+              <div class="service-icon">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <h3 class="service-title">Corporate Events</h3>
+              <p class="service-description">Impress clients and colleagues with our professional corporate catering services. From board meetings to company galas, we deliver excellence.</p>
+              <ul class="service-features">
+                <li>Brand-themed presentations</li>
+                <li>Efficient setup and service</li>
+                <li>Customizable options</li>
+                <li>On-time delivery guarantee</li>
+                <li>Budget-friendly packages</li>
+              </ul>
+              <a href="#" class="btn btn-custom">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Private Parties -->
+        <div class="col-lg-6">
+          <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1081&q=80" class="service-img" alt="Private Parties">
+            <div class="service-content">
+              <div class="service-icon">
+                <i class="fas fa-birthday-cake"></i>
+              </div>
+              <h3 class="service-title">Private Parties</h3>
+              <p class="service-description">From intimate dinners to large celebrations, we create memorable dining experiences for your special occasions.</p>
+              <ul class="service-features">
+                <li>Theme-based catering</li>
+                <li>Flexible menu options</li>
+                <li>Expert event coordination</li>
+                <li>Staffing solutions</li>
+                <li>Equipment rental assistance</li>
+              </ul>
+              <a href="#" class="btn btn-custom">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Events -->
+        <div class="col-lg-6">
+          <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" class="service-img" alt="Social Events">
+            <div class="service-content">
+              <div class="service-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3 class="service-title">Social Events</h3>
+              <p class="service-description">Whether it's a birthday, anniversary, or holiday celebration, we provide exceptional catering for all your social gatherings.</p>
+              <ul class="service-features">
+                <li>Customizable packages</li>
+                <li>Seasonal menu options</li>
+                <li>Decor and ambiance planning</li>
+                <li>Specialty beverage services</li>
+                <li>Venue coordination assistance</li>
+              </ul>
+              <a href="#" class="btn btn-custom">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process-section">
+    <div class="container">
+      <h2 class="text-center mb-5">Our Process</h2>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="process-number">1</div>
+            <h4 class="process-title">Consultation</h4>
+            <p>We discuss your event details, preferences, and dietary requirements to understand your vision.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="process-number">2</div>
+            <h4 class="process-title">Menu Planning</h4>
+            <p>Our chefs create a customized menu proposal tailored to your event and preferences.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="process-number">3</div>
+            <h4 class="process-title">Tasting</h4>
+            <p>We invite you for a tasting session to ensure our offerings meet your expectations.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="process-number">4</div>
+            <h4 class="process-title">Execution</h4>
+            <p>On the day of your event, our professional team delivers an exceptional culinary experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="text-center mb-5">What Our Clients Say</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Pure Catering made our wedding day absolutely perfect! The food was exquisite, and their staff was incredibly professional."</p>
+            <p class="testimonial-author">- Sarah & Michael</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"We've used Pure Catering for three corporate events now, and they consistently deliver exceptional quality and service."</p>
+            <p class="testimonial-author">- Jennifer Thompson, CEO</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"The birthday party catering exceeded all expectations! Our guests are still talking about the delicious food weeks later."</p>
+            <p class="testimonial-author">- Robert Johnson</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Plan Your Event?</h2>
+      <p>Contact us today to discuss your catering needs and let us create a memorable culinary experience for your special occasion.</p>
+      <a href="./contact.html" class="btn btn-light-custom me-3">Get in Touch</a>
+      <a href="https://web.whatsapp.com/" class="btn btn-outline-light">Message on WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Pure Catering</h5>
+          <p>Exquisite food and impeccable service for all your special occasions.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+          <p><i class="fas fa-envelope"></i> info@purecatering.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Avenue, Foodville</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Follow Us</h5>
+          <div class="social-icons">
+            <a href="https://web.facebook.com/"><i class="fab fa-facebook-f me-3"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram me-3"></i></a>
+            <a href="https://www.tiktok.com/"><i class="fab fa-tiktok me-3"></i></a>
+            <a href="https://www.pinterest.com/"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <p class="text-center">&copy; 2023 Pure Catering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304613!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1657541785729!5m2!1sen!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>

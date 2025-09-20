@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Catering</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+
+    .navbar-brand span {
+      color: #1abc9c;
+    }
+
+    .nav-link {
+      color: #2c3e50;
+      font-weight: 600;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #1abc9c;
+    }
+
+    .btn-custom {
+      background: #1abc9c;
+      color: white;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-custom:hover {
+      background: #16a085;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 80px 0 40px;
+      text-align: center;
+      background: white;
+      margin-bottom: 40px;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-header h1 {
+      color: #2c3e50;
+      font-weight: 800;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .page-header p {
+      color: #7f8c8d;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    /* Menu Categories */
+    .menu-categories {
+      margin-bottom: 40px;
+    }
+
+    .category-btn {
+      background: white;
+      color: #2c3e50;
+      border: 2px solid #1abc9c;
+      border-radius: 50px;
+      padding: 10px 25px;
+      margin: 5px 10px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: #1abc9c;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+    }
+
+    /* Menu Items */
+    .menu-section {
+      margin-bottom: 60px;
+    }
+
+    .menu-section-title {
+      color: #2c3e50;
+      font-weight: 700;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #1abc9c;
+      display: inline-block;
+    }
+
+    .menu-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu-item-img {
+      height: 180px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .menu-item-content {
+      padding: 20px;
+    }
+
+    .menu-item-title {
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .menu-item-desc {
+      color: #7f8c8d;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    .menu-item-price {
+      color: #1abc9c;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .dietary-info {
+      font-size: 0.8rem;
+      color: #95a5a6;
+      margin-top: 8px;
+    }
+
+    /* Call to Action */
+    .cta-section {
+      background: white;
+      padding: 60px 0;
+      border-radius: 20px;
+      margin: 60px 0;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Footer */
+    .footer {
+      background: #2c3e50;
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #1abc9c;
+      text-decoration: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .page-header p {
+        font-size: 1rem;
+      }
+      
+      .category-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        margin: 3px 5px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .menu-item-title {
+        font-size: 1.1rem;
+      }
+      
+      .menu-item-desc {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="./index.html"><span>Food</span> Catering</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="./menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contact.html">Contact us</a>
+          </li>
+          <li class="nav-item ms-2">
+            <a class="btn btn-custom" href="https://web.whatsapp.com/">Book Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Our Exquisite Menu</h1>
+      <p>Discover our carefully crafted dishes made with the freshest ingredients and passion for culinary excellence. All menus can be customized to suit your event.</p>
+      <a href="#contact" class="btn btn-custom">Request Custom Menu</a>
+    </div>
+  </section>
+
+  <!-- Menu Categories -->
+  <section class="menu-categories text-center">
+    <div class="container">
+      <button class="category-btn active" data-category="all">All Items</button>
+      <button class="category-btn" data-category="appetizers">Appetizers</button>
+      <button class="category-btn" data-category="mains">Main Courses</button>
+      <button class="category-btn" data-category="desserts">Desserts</button>
+      <button class="category-btn" data-category="beverages">Beverages</button>
+      <button class="category-btn" data-category="packages">Packages</button>
+    </div>
+  </section>
+
+  <!-- Menu Items -->
+  <section class="menu-items">
+    <div class="container">
+      <!-- Appetizers -->
+      <div class="menu-section" id="appetizers">
+        <h2 class="menu-section-title">Appetizers</h2>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="appetizers">
+              <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="menu-item-img" alt="Bruschetta">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Tomato Basil Bruschetta</h3>
+                <p class="menu-item-desc">Toasted bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil.</p>
+                <p class="menu-item-price">$8.95</p>
+                <p class="dietary-info">Vegetarian</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="appetizers">
+              <img src="./roll.jpg" class="menu-item-img" alt="Spring Rolls">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">zinger roll</h3>
+                <p class="menu-item-desc">Delicate rolls filled with fresh vegetables, served with sweet chili dipping sauce.</p>
+                <p class="menu-item-price">$9.50</p>
+                <p class="dietary-info">Vegetarian</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="appetizers">
+              <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" class="menu-item-img" alt="Stuffed Mushrooms">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Creamy Stuffed Mushrooms</h3>
+                <p class="menu-item-desc">Button mushrooms filled with herbed cream cheese and baked to perfection.</p>
+                <p class="menu-item-price">$10.95</p>
+                <p class="dietary-info">Vegetarian</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Courses -->
+      <div class="menu-section" id="mains">
+        <h2 class="menu-section-title">Main Courses</h2>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="mains">
+              <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="menu-item-img" alt="Grilled Salmon">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Herb-Crusted Grilled Salmon</h3>
+                <p class="menu-item-desc">Atlantic salmon with fresh herbs, served with seasonal vegetables and lemon butter sauce.</p>
+                <p class="menu-item-price">$29.95</p>
+                <p class="dietary-info">Gluten-free option available</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="mains">
+              <img src="./burger.jpg" class="menu-item-img" alt="Beef Tenderloin">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Beef Burger</h3>
+                <p class="menu-item-desc">Premium beef tenderloin cooked to perfection, served with roasted potatoes and red wine reduction.</p>
+                <p class="menu-item-price">$40.95</p>
+                <p class="dietary-info"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="mains">
+              <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" class="menu-item-img" alt="Vegetable Risotto">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Wild Mushroom & Truffle Risotto</h3>
+                <p class="menu-item-desc">Creamy Arborio rice with wild mushrooms, white wine, and finished with truffle oil.</p>
+                <p class="menu-item-price">$42.95</p>
+                <p class="dietary-info">Vegetarian, Gluten-free</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desserts -->
+      <div class="menu-section" id="desserts">
+        <h2 class="menu-section-title">Desserts</h2>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="desserts">
+              <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="menu-item-img" alt="Chocolate Cake">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Decadent Chocolate Cake</h3>
+                <p class="menu-item-desc">Rich layers of chocolate cake with ganache filling and chocolate buttercream.</p>
+                <p class="menu-item-price">$8.95</p>
+                <p class="dietary-info">Vegetarian</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="desserts">
+              <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" class="menu-item-img" alt="Berry Cheesecake">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">New York Style Berry Cheesecake</h3>
+                <p class="menu-item-desc">Creamy cheesecake with a graham cracker crust, topped with fresh seasonal berries.</p>
+                <p class="menu-item-price">$9.50</p>
+                <p class="dietary-info">Vegetarian</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="desserts">
+              <img src="./cake.jpg" class="menu-item-img" alt="Crème Brûlée">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Ice cake</h3>
+                <p class="menu-item-desc">Classic French dessert with rich vanilla custard and caramelized sugar top.</p>
+                <p class="menu-item-price">$7.95</p>
+                <p class="dietary-info">Vegetarian, Gluten-free</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beverages -->
+      <div class="menu-section" id="beverages">
+        <h2 class="menu-section-title">Beverages</h2>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="beverages">
+              <img src="./pasta.jpg" class="menu-item-img" alt="Signature Cocktails">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Pasta</h3>
+                <p class="menu-item-desc">Choose from our selection of handcrafted cocktails featuring premium spirits and fresh ingredients.</p>
+                <p class="menu-item-price">$12.00</p>
+                <p class="dietary-info"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="beverages">
+              <img src="./drinks.webp" class="menu-item-img" alt="Wine Selection">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Cold drinks</h3>
+                <p class="menu-item-desc">Curated wines from around the world to complement your meal perfectly.</p>
+                <p class="menu-item-price">From $10.00/glass</p>
+                <p class="dietary-info"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="menu-item" data-category="beverages">
+              <img src="./juice.webp" class="menu-item-img" alt="Fresh Juices">
+              <div class="menu-item-content">
+                <h3 class="menu-item-title">Fresh Pressed Juices</h3>
+                <p class="menu-item-desc">Cold-pressed juices made daily from seasonal fruits and vegetables.</p>
+                <p class="menu-item-price">$6.50</p>
+                <p class="dietary-info">Vegan, Gluten-free</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Plan Your Event?</h2>
+      <p class="mb-4">Contact us to discuss custom menu options tailored to your specific needs and preferences.</p>
+      <a href="./contact.html" class="btn btn-custom me-3">Get in Touch</a>
+      <a href="https://web.whatsapp.com/" class="btn btn-outline-secondary">Message on WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Pure Catering</h5>
+          <p>Exquisite food and impeccable service for all your special occasions.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+          <p><i class="fas fa-envelope"></i> info@purecatering.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Avenue, Foodville</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Follow Us</h5>
+          <div class="social-icons">
+            <a href="https://web.facebook.com/"><i class="fab fa-facebook-f me-3"></i></a>
+            <a href="https://www.instagram.com/"><i class="fab fa-instagram me-3"></i></a>
+            <a href="https://www.tiktok.com/"><i class="fab fa-tiktok me-3"></i></a>
+            <a href="https://www.pinterest.com/"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <p class="text-center">&copy; 2023 Pure Catering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Simple category filtering
+    document.addEventListener('DOMContentLoaded', function() {
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      const menuItems = document.querySelectorAll('.menu-item');
+      
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          
+          // Update active button
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Filter items
+          menuItems.forEach(item => {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

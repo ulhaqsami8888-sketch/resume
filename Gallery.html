@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Catering Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f6f1;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #26f1c1 0%, #fad0c4 100%);
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: #5a3921;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #7d5d3b;
+            font-style: italic;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .filter-btn {
+            padding: 12px 25px;
+            background: #fff;
+            border: 2px solid #15c39a;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #17bf98;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #15c79d;
+            color: #fff;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #fff;
+            height: 280px;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-caption {
+            padding: 15px;
+            text-align: center;
+            background: #fff;
+        }
+        
+        .gallery-caption h3 {
+            color: #5a3921;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .gallery-caption p {
+            color: #e67e22;
+            font-weight: 600;
+        }
+        
+        .food-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e67e22;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #26f1c1;
+            color: #f9f6f1;
+            border-radius: 20px 20px 0 0;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Catering Gallery</h1>
+        <p class="tagline">Exquisite Food Presentations for Your Special Events</p>
+    </header>
+    
+    <div class="container">
+        <div class="filter-buttons">
+            <button class="filter-btn " data-filter="all">All</button>
+            <button class="filter-btn" data-filter="wedding">Wedding</button>
+            <button class="filter-btn" data-filter="corporate">Corporate</button>
+            <button class="filter-btn" data-filter="social">Social Events</button>
+            <button class="filter-btn" data-filter="platters">Food Platters</button>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item" data-category="wedding">
+                <div class="food-tag">Wedding</div>
+                <img src="./pasta.jpg" alt="Elegant Wedding Buffet" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Elegant Wedding Buffet</h3>
+                    <p>Luxury Spread</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="corporate">
+                <div class="food-tag">Corporate</div>
+                <img src="./roll.jpg" alt="Corporate Lunch" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Corporate Lunch</h3>
+                    <p>Professional Setting</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="social">
+                <div class="food-tag">Social</div>
+                <img src="./cake.jpg" alt="Birthday Party" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Birthday Celebration</h3>
+                    <p>Festive Arrangement</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="platters">
+                <div class="food-tag">Platters</div>
+                <img src="./friut.jpg" alt="Fruit Platter" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Fresh Fruit Platter</h3>
+                    <p>Healthy Selection</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="wedding">
+                <div class="food-tag">Wedding</div>
+                <img src="./burger.jpg" alt="Dessert Table" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Beef Burger</h3>
+                    <p>Fast food</p>
+    
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="corporate">
+                <div class="food-tag">Corporate</div>
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Conference Catering" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Conference Breakfast</h3>
+                    <p>Morning Refreshments</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="platters">
+                <div class="food-tag">Platters</div>
+                <img src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Cheese Board" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Artisan Cheese Board</h3>
+                    <p>Gourmet Selection</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="social">
+                <div class="food-tag">Social</div>
+                <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="BBQ Party" class="gallery-img">
+                <div class="gallery-caption">
+                    <h3>Backyard BBQ Setup</h3>
+                    <p>Casual Gathering</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Gourmet Catering Gallery | Exquisite Food Presentations</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

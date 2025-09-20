@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Gourmet Delights Catering</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1abc9c;
+      --primary-dark: #16a085;
+      --secondary: #2c3e50;
+      --light: #ecf0f1;
+      --accent: #e74c3c;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      padding-top: 80px;
+      background-color: #f9f9f9;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 1.8rem;
+    }
+    
+    .navbar-brand span {
+      color: var(--primary);
+    }
+    
+    .nav-link {
+      color: var(--secondary);
+      font-weight: 600;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .btn-custom {
+      background: var(--primary);
+      color: white;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .btn-custom:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      margin-top: -80px;
+    }
+    
+    .page-header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    
+    .breadcrumb {
+      background: transparent;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    
+    .breadcrumb-item a {
+      color: var(--primary);
+    }
+    
+    /* Contact Section */
+    .contact-section {
+      padding: 100px 0;
+    }
+    
+    .contact-info-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+      height: 100%;
+      transition: all 0.3s;
+    }
+    
+    .contact-info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .contact-form-card {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+    
+    .form-control, .form-select {
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(26, 188, 156, 0.25);
+    }
+    
+    /* Success message */
+    .success-message {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    /* FAQ Section */
+    .faq {
+      padding: 100px 0;
+      background: var(--light);
+    }
+    
+    .faq-item {
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .faq-question {
+      padding: 20px;
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-answer.active {
+      padding: 20px;
+      max-height: 300px;
+      background: white;
+    }
+    
+    /* Map Section */
+    .map-section {
+      padding: 0;
+    }
+    
+    .map-container {
+      height: 450px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Footer Styles */
+    .catering-footer {
+      background: linear-gradient(to bottom, var(--secondary) 80%, #253241 100%);
+      color: white;
+      padding: 60px 0 25px;
+      box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .catering-footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary), var(--accent), var(--primary));
+    }
+    
+    .catering-footer h5 {
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: white;
+      position: relative;
+      padding-bottom: 12px;
+      font-size: 1.4rem;
+    }
+    
+    .catering-footer h5::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--primary);
+      border-radius: 3px;
+    }
+    
+    .catering-footer p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    
+    .footer-logo {
+      font-weight: 700;
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+    
+    .footer-logo span {
+      color: var(--primary);
+    }
+    
+    .business-hours {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+    
+    .business-hours li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .business-hours li:last-child {
+      border-bottom: none;
+    }
+    
+    .contact-info p {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .contact-info i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      min-width: 30px;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .social-icons a:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-catering {
+      background: var(--primary);
+      color: white;
+      border-radius: 50px;
+      padding: 12px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+    }
+    
+    .btn-catering:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
+      color: white;
+    }
+    
+    .btn-outline-catering {
+      background: transparent;
+      color: white;
+      border: 2px solid var(--primary);
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    
+    .btn-outline-catering:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .newsletter-form {
+      position: relative;
+      margin-top: 20px;
+    }
+    
+    .newsletter-form .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      padding: 15px 25px;
+      height: auto;
+    }
+    
+    .newsletter-form .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .newsletter-form .btn-catering {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      padding: 10px 20px;
+    }
+    
+    .footer-divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 30px 0 25px;
+    }
+    
+    .copyright {
+      text-align: center;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+    
+    .footer-badge {
+      background: var(--primary);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 15px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .contact-form-card {
+        padding: 25px;
+      }
+      
+      .catering-footer h5::after {
+        left: 0;
+      }
+      
+      .newsletter-form .btn-catering {
+        position: relative;
+        margin-top: 10px;
+        right: 0;
+        top: 0;
+        width: 100%;
+      }
+      
+      .business-hours li {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="./index.html"><span>Gourmet</span> Delights</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="./contact.html">Contact us</a>
+          </li>
+          <li class="nav-item ms-2">
+            <a class="btn btn-custom" href="https://web.whatsapp.com/">Book Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb justify-content-center">
+          
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="text-center mb-5">
+            <h2>Get In Touch</h2>
+            <p class="lead">We'd love to hear from you. Let us know how we can help with your catering needs.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mb-5">
+        <div class="col-md-4">
+          <div class="contact-info-card text-center">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Our Location</h3>
+            <p>123 Culinary Avenue<br>Foodville, NY 10001</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-info-card text-center">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <h3>Call Us</h3>
+            <p>Phone: (555) 123-4567<br>Fax: (555) 123-4568</p>
+            <a href="tel:5551234567" class="btn btn-custom mt-3">Call Now</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-info-card text-center">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email Us</h3>
+            <p>info@gourmetdelights.com<br>events@gourmetdelights.com</p>
+            <a href="mailto:info@gourmetdelights.com" class="btn btn-custom mt-3">Send Email</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="contact-form-card">
+            <h3 class="text-center mb-4">Send Us a Message</h3>
+            <form id="contact-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Your Name *</label>
+                    <input type="text" class="form-control" id="name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="email" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="event-type" class="form-label">Event Type</label>
+                    <select class="form-select" id="event-type">
+                      <option selected>Select Event Type</option>
+                      <option>Wedding</option>
+                      <option>Corporate Event</option>
+                      <option>Private Party</option>
+                      <option>Birthday</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="event-date" class="form-label">Event Date</label>
+                    <input type="date" class="form-control" id="event-date">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="guests" class="form-label">Number of Guests</label>
+                    <input type="number" class="form-control" id="guests" min="1">
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message *</label>
+                <textarea class="form-control" id="message" rows="5" required></textarea>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-custom btn-lg">Send Message</button>
+                <div class="success-message" id="successMessage">
+                  Message sent successfully!
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304613!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1657541785729!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="section-title text-center">
+            <h2>Common Questions</h2>
+            <p>Quick answers to frequently asked questions</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>What are your business hours?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Our office is open Monday to Friday from 9:00 AM to 6:00 PM, and Saturdays from 10:00 AM to 4:00 PM. We're closed on Sundays. However, our catering services are available 7 days a week for events.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>How soon can you respond to my inquiry?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>We typically respond to all inquiries within 24 hours during business days. For urgent requests, please call us directly at (555) 123-4567.</p>
+            </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="catering-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+          <a href="#" class="footer-logo"><span>Gourmet</span> Delights</a>
+          <p>Exquisite food and impeccable service for all your special occasions. Making every event memorable through culinary excellence.</p>
+          <div class="footer-badge">
+            <i class="fas fa-utensils me-2"></i>Since 2005
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Our Services</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Menu Packages</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Testimonials</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Gallery</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5>Contact Info</h5>
+          <div class="contact-info">
+            <p><i class="fas fa-phone me-2"></i> (555) 123-4567</p>
+            <p><i class="fas fa-envelope me-2"></i> info@gourmetdelights.com</p>
+            <p><i class="fas fa-map-marker-alt me-2"></i> 123 Culinary Avenue, Foodville, NY 10001</p>
+          </div>
+          <a href="#" class="btn-outline-catering mt-2">
+            <i class="fas fa-download me-2"></i>Download Brochure
+          </a>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+          <h5>Stay Updated</h5>
+          <p>Subscribe to our newsletter for special offers and menu updates.</p>
+          
+          <div class="newsletter-form">
+            <input type="email" class="form-control" placeholder="Your email address">
+            <button class="btn-catering">Subscribe</button>
+          </div>
+          
+          <h5 class="mt-4">Follow Us</h5>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-divider"></div>
+      
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="business-hours">
+            <li><span>Monday - Friday:</span> <span>9am - 6pm</span></li>
+            <li><span>Saturday:</span> <span>10am - 4pm</span></li>
+            <li><span>Sunday:</span> <span>Closed</span></li>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="copyright mb-0">&copy; 2023 Gourmet Delights Catering. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // FAQ Toggle Function
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      const icon = element.querySelector('i');
+      
+      if (answer.classList.contains('active')) {
+        answer.classList.remove('active');
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+      } else {
+        // Close any open FAQs first
+        document.querySelectorAll('.faq-answer.active').forEach(item => {
+          item.classList.remove('active');
+          item.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
+          item.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
+        });
+        
+        answer.classList.add('active');
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+      }
+    }
+
+    // Form Submission with Validation
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Basic validation
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      
+      // Email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      
+      // If validation passes
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block';
+      
+      // Hide the message after 5 seconds
+      setTimeout(function() {
+        successMessage.style.display = 'none';
+      }, 5000);
+      
+      this.reset();
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.padding = '10px 0';
+        navbar.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.style.padding = '15px 0';
+        navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+      }
+    });
+
+    // Set minimum date for event date field to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('event-date').setAttribute('min', today);
+  </script>
+</body>
+</html>
